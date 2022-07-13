@@ -20,7 +20,7 @@ contract Storage {
     }
 
     function store(int num) public {
-        numeroDev += num;
+        numeroDev = numeroDev + num;
     }
 
 }
