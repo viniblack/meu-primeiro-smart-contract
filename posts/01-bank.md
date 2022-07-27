@@ -56,7 +56,8 @@ Por exemplo, vamos criar um `modifier` chamado `isOwner` que dentro dele vai ter
     }
 ```
  
-> Na linha {1} estamos utilizando um padrão criado pela comunidade que é colocar um `_;` no final dos `modifier` para demonstrar que é o final do modificador.
+> Na linha {1} se a instrução `require` retornar um true então será executado o código `_;` que significa: execute o que vem depois.
+> Isso quer dizer que se o código quebrar no require não irá executar a instrução, logo, não irá executar o código da função que vem depois.
  
 ## Eventos
 Agora vamos criar os eventos `BalanceIncreased` passando como
