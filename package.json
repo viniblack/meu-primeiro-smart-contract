@@ -1,0 +1,25 @@
+{
+  "name": "meu-primeiro-smart-contract",
+  "version": "1.0.0",
+  "description": "Este repositório se trata de exercícios e ensino do conjunto de artigos presente no perfil de [Vini Black](https://www.web3dev.com.br/viniblack) no website [Web3Dev](https://www.web3dev.com.br/), uma comunidade de desenvolvedores e entusiastas de aplicações, projetos e ideias referentes a Web 3.0.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viniblack/meu-primeiro-smart-contract.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/viniblack/meu-primeiro-smart-contract/issues"
+  },
+  "homepage": "https://github.com/viniblack/meu-primeiro-smart-contract#readme",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^1.0.2",
+    "dotenv": "^16.0.1",
+    "hardhat": "^2.10.1"
+  }
+}
