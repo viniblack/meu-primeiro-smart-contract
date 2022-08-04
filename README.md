@@ -15,5 +15,6 @@ Ensinar qualquer pessoa que tenha zero conhecimento em solidity a criar seus pri
 - [ ]  Aprendendo um pouco mais sobre testes unitários;
 
 ## 🛠️ Tecnologias e Ferramentas
++ [Hardhat](https://hardhat.org/)
 + [Solidity](https://docs.soliditylang.org/en/v0.8.15/)
 + [Remix IDE](https://remix.ethereum.org/)
