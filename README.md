@@ -9,7 +9,7 @@ Ensinar qualquer pessoa que tenha zero conhecimento em solidity a criar seus pri
 - [x]  [Aprendendo um pouco mais sobre smart contract;](https://www.web3dev.com.br/viniblack/meu-primeiro-smart-contract-aprendendo-um-pouco-mais-sobre-smart-contract-2hfe)
 - [x]  [Criando um contrato de aposta;](https://www.web3dev.com.br/viniblack/meu-primeiro-smart-contract-criando-um-contrato-de-aposta-2349)
 - [X]  [Criando um token ERC-20;](https://www.web3dev.com.br/viniblack/meu-primeiro-smart-contract-tokens-erc-20-57cf)
-- [ ]  Criando um smart contract com hardhat;
+- [X]  [Subindo meu primeiro smart contract para blockchain](https://www.web3dev.com.br/viniblack/meu-primeiro-smart-contract-subindo-meu-primeiro-smart-contract-para-blockchain-11ij);
 - [ ]  Criando um airdrop de tokens;
 - [ ]  Desenvolvendo um smart contract com testes unitários;
 - [ ]  Aprendendo um pouco mais sobre testes unitários;
