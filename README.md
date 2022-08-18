@@ -13,12 +13,13 @@ Ensinar qualquer pessoa que tenha zero conhecimento em solidity a criar seus pri
 - [x] [Criando um contrato de aposta;](https://www.web3dev.com.br/viniblack/meu-primeiro-smart-contract-criando-um-contrato-de-aposta-2349)
 - [x] [Criando um token ERC-20;](https://www.web3dev.com.br/viniblack/meu-primeiro-smart-contract-tokens-erc-20-57cf)
 - [x] [Subindo meu primeiro smart contract para blockchain;](https://www.web3dev.com.br/viniblack/meu-primeiro-smart-contract-subindo-meu-primeiro-smart-contract-para-blockchain-11ij)
-- [ ] Criando um airdrop de tokens;
+- [x] [Criando um airdrop de tokens ERC-20](https://www.web3dev.com.br/viniblack/meu-primeiro-smart-contract-criando-airdrop-de-tokens-erc-20-37ee);
 - [ ] Desenvolvendo um smart contract com testes unitários;
 - [ ] Aprendendo um pouco mais sobre testes unitários;
 
 ## 🛠️ Tecnologias e Ferramentas
 
-- [Hardhat](https://hardhat.org/)
-- [Remix IDE](https://remix.ethereum.org/)
 - [Solidity](https://docs.soliditylang.org/en/v0.8.15/)
+- [Remix IDE](https://remix.ethereum.org/)
+- [Hardhat](https://hardhat.org/)
+- [Alchemy](https://www.alchemy.com/)

@@ -1,4 +1,4 @@
-Esse é o sexto post da série Meu primeiro smart contract, que tem a intenção de ensinar ao longo de sete semanas alguns conceitos do solidity até construirmos um token baseado no ERC-20 com alguns testes unitários.
+Esse é o sexto post da série **Meu primeiro smart contract**, que tem a intenção de ensinar ao longo de sete semanas alguns conceitos do solidity até construirmos um token baseado no ERC-20 com alguns testes unitários.
 
 Nesse post vamos criar um contrato de airdrop de tokens utilizando o hardhat.
 
@@ -6,11 +6,11 @@ Nesse post vamos criar um contrato de airdrop de tokens utilizando o hardhat.
 
 Nesse post vamos utilizar o [VS Code](https://code.visualstudio.com/download) para editar o código, o [Node.js](https://nodejs.org/en/download/) para instalar e executar o código.
 
-Vamos continuar usando o mesmo projeto do post anterior, caso você não viu o post anterior clique [aqui](https://www.web3dev.com.br/viniblack/meu-primeiro-smart-contract-subindo-meu-primeiro-smart-contract-para-blockchain-11ij).
+Vamos continuar usando o mesmo projeto do post anterior, caso você não tenha visto o post anterior clique [aqui](https://www.web3dev.com.br/viniblack/meu-primeiro-smart-contract-subindo-meu-primeiro-smart-contract-para-blockchain-11ij).
 
 ## Airdrop
 
-Os airdrops de criptomoedas são uma estratégia de marketing usada por startups para fornecer tokens a traders de criptomoedas existentes gratuitamente ou em troca de um trabalho promocional mínimo.
+Os airdrops de criptomoedas são uma estratégia de marketing usada pelas empresas para fornecer tokens a traders de criptomoedas existentes gratuitamente ou em troca de um trabalho promocional mínimo.
 
 No VS Code, vamos criar dois novos arquivos dentro da pasta `contracts` um chamado `03-tokens.sol` e outro chamado `05-airdrop.sol`, dentro do `03-tokens.sol` vamos copiar o código que criamos no post [Criando um token ERC-20](https://www.web3dev.com.br/viniblack/meu-primeiro-smart-contract-tokens-erc-20-57cf), caso você não tenho o código clique [aqui](https://github.com/viniblack/meu-primeiro-smart-contract/blob/main/contracts/03-token.sol). E colar dentro de `03-tokens.sol`, e no `05-airdrop.sol` vamos declarar as licenças do nosso contrato, a versão do contrato e dar um nome ao contrato como já fizemos antes, mas agora vamos importar `03-tokens.sol` também.
 
@@ -30,7 +30,7 @@ contract Airdrop  {
 
 Não existe uma forma certa de estruturar o código dos nossos contratos, mas para facilitar o entendimento vamos utilizar o seguinte padrão:
 
-![Estrutura do código](https://web3dev-forem-production.s3.amazonaws.com/uploads/articles/fzf4z30wjlzrmp3g2c6w.png)
+![Estrutura do código](https://web3dev-forem-production.s3.amazonaws.com/uploads/articles/z0nnhw07wr1owzuo2u0a.png)
 
 **Enum**: Onde criamos nossos Enums, que é um tipo de dado utilizado para armazenar um conjunto de valores constantes que não pode ser modificado.
 **Properties**: Onde criamos nossas variáveis;
@@ -163,7 +163,7 @@ function state() public view returns(Status) {
 
 #### Mudando o status do contrato
 
-Vamos criar uma função pública chamada `changeState` que irá receber um número como parâmetro, esse número pode ser `0 - PAUSED` `1 - ACTIVE`, só podemos definir status cancelado quando o contrato estiver "morto", essa função só pode ser chamado pelo dono do contrato.
+Vamos criar uma função pública chamada `changeState` que irá receber um número como parâmetro, esse número pode ser `0-PAUSED` e `1-ACTIVE`, só podemos definir status cancelado quando o contrato estiver "morto", essa função só pode ser chamado pelo dono do contrato.
 
 ```solidity
 function changeState(uint8 status) public isOwner {
@@ -205,7 +205,7 @@ function execute() public isOwner isActived returns(bool) {
 }
 ```
 
-A lógica que vamos utilizar para distribuir nossos tokens é pegar o total de tokens e dividir pelo total de endereços que se inscreveram no nosso contrato de airdrop.
+A lógica que vamos utilizar para distribuir nossos tokens é pegar o total de tokens e dividir pelo total de endereços que se inscreveram no nosso contrato de airdrop .
 Então vamos criar uma variável chamada `amountToTransfer` que irá receber a quantidade total de tokens e dividir pela quantidade total de endereços inscritos no contrato de airdrop.
 
 ```solidity
@@ -351,7 +351,9 @@ No arquivo `deploy-airdrop.js` vamos importar os arquivos do hardhat e criar nos
 ```javascript
 const hre = require("hardhat");
 
-async function main() {}
+async function main() {
+
+}
 
 main().catch((error) => {
   console.error(error);
@@ -359,7 +361,7 @@ main().catch((error) => {
 });
 ```
 
-Dentro da função `main` vamos nos conectar ao contrato `CryptoToken`, realizar o deploy deste contrato passando mil como parâmetro e escrever no console o endereço do contrato de token.
+Dentro da função `main` vamos nos conectar ao contrato `CryptoToken`, realizar o deploy deste contrato criando mil tokens e escrever no console o endereço do contrato de token.
 
 ```javascript
 const hre = require("hardhat");
@@ -406,16 +408,20 @@ Como configuramos o hardhat no post anterior, no terminal vamos executar o segui
 npx hardhat run scripts/deploy-airdrop.js --network goerli
 ```
 
-imagem aqui
+Se tudo estiver certo esse irá retornar o endereço do nosso contrato.
+
+![Endereço dos nossos contratos](https://web3dev-forem-production.s3.amazonaws.com/uploads/articles/l3hj63u1ldda5n0f3pbm.png)
 
 Copiando os endereços e entrando no [Goerli Etherscan](https://goerli.etherscan.io/) podemos ver nossos contratos na blockchain da Goerli.
 Esses são os contratos que subimos nesse post.
+
 - [CryptoToken](https://goerli.etherscan.io/address/0x075daa13e5181800b918be672e7b9a54af247f99)
 - [Airdrop](https://goerli.etherscan.io/address/0x515Dc96919bd7a6dCcdD5d4f8c94AEd65A04BDc0)
 
 ## Conclusão
 
-Lorem ipsum.
+Esse foi o sexto post da série "Meu primeiro smart contract".
+Se tudo deu certo, agora você tem um smart contract que é capaz de realizar um airdrop de token ERC-20 rodando na testnet Goerli.
 
 Se você gostou do conteúdo e te ajudou de alguma forma, deixe um like para ajudar o conteúdo a chegar para mais pessoas.
 
