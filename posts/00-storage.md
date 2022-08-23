@@ -3,6 +3,7 @@ Esse é o primeiro post da série **Meu primeiro smart contract**, que tem a int
 Nesse post vamos criar o nosso primeiro smart contract, onde você vai conseguir salvar um número no contrato e consultar esse número.
 
 ## Ferramentas
+
 Nesse começo vamos utilizar o [Remix IDE](https://remix.ethereum.org/) para criarmos os nossos primeiros contratos.
 
 ## Criando um novo arquivo
@@ -17,7 +18,8 @@ Por enquanto, vamos ignorar esses arquivos e criar um novo arquivo dentro da pas
 ![Informando o nome do novo arquivo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/r5x4m8pka3l75dbanafz.png)
 
 Dentro do arquivo `00-storage.sol` vamos definir as licenças do nosso contrato e sua versão.
-A Partir da versão 0.6.8 do *solidity* precisamos definir uma licença para nossos contratos.
+A Partir da versão 0.6.8 do _solidity_ precisamos definir uma licença para nossos contratos.
+
 > Você pode entender um pouco mais sobre licenças clicando [aqui](https://forum.openzeppelin.com/t/solidity-0-6-8-introduces-spdx-license-identifiers/2859).
 
 ```solidity
@@ -25,6 +27,7 @@ A Partir da versão 0.6.8 do *solidity* precisamos definir uma licença para nos
 
 pragma solidity >=0.7.0 <0.9.0; // {2}
 ```
+
 Na linha {1} vamos definir qual é a licença do nosso contrato.
 Na linha {2} vamos definir em qual versão do solidity nosso contrato vai ser desenvolvido.
 
@@ -43,6 +46,7 @@ Não existe uma forma certa de estruturar o código dos nossos contratos, mas pa
 3. **Public Functions**: Onde vamos definir nossas funções públicas;
 
 O solidity é uma linguagem fortemente tipada, isso quer dizer que temos que informar qual é o tipo (type) dos nossos objetos e variáveis no momento de sua declaração.
+
 > Caso queira entender um pouco mais sobre tipagem no solidity clique [aqui](https://solidity.web3dev.com.br/apostila/tipos-de-variaveis)
 
 ## Variáveis
@@ -56,7 +60,8 @@ contract Storage {
    int private numeroDev;
 }
 ```
-Por padrão as variáveis no solidity são públicas, então se você só informar o tipo (type) da variável e seu nome, ela vai ser pública. 
+
+Por padrão as variáveis no solidity são públicas, então se você só informar o tipo (type) da variável e seu nome, ela vai ser pública.
 
 ## Construtor
 
@@ -87,6 +92,7 @@ Quando temos uma função de visualização temos que declarar isso, para fazer 
 Igual as variáveis precisamos definir se nossas funções são públicas ou privadas. Se nossa função retornar alguma coisa precisamos informar qual é o tipo (type) desse retorno.
 Para fazer isso basta colocarmos `returns (type)` na frente do nome da função.
 Vamos criar duas funções:
+
 1. `get()` que vai ser uma função pública do tipo `view` e vai retornar o valor da variável `numeroDev` que é do tipo inteiro.
 2. `store` que vai ser uma função pública do modificação, que recebe como parâmetro um número inteiro, e dentro dele vamos fazer a soma de `numeroDev` + `num`.
 
@@ -102,6 +108,7 @@ Vamos criar duas funções:
 ```
 
 ## Nosso código até agora
+
 Se você você chegou até aqui seu contrato vai estar mais ou menos assim:
 
 ```solidity
@@ -132,44 +139,48 @@ contract Storage {
 
 }
 ```
+
 ## Executando nosso contrato
+
 Agora no **Remix IDE** vamos compilar e realizar o deploy do nosso contrato `00-storage.sol`.
 
 1. No menu lateral esquerdo clique em "Solidity compiler".
-![Abrindo aba para compilar o contrato](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/w2mx7stdsexhwejw6k47.png)
+   ![Abrindo aba para compilar o contrato](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/w2mx7stdsexhwejw6k47.png)
 
 2. Clique no botão "Compile 00-storage.sol".
-![Compilando o contrato 00-storage.sol](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4uvbl3883eypjym7415o.png)
+   ![Compilando o contrato 00-storage.sol](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4uvbl3883eypjym7415o.png)
 
 3. No menu lateral esquerdo clique em "Deploy & run transactions".
-![Abrindo aba para fazer o deploy](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/hos0ozikh9erv43lji2y.png)
+   ![Abrindo aba para fazer o deploy](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/hos0ozikh9erv43lji2y.png)
 
 4. Clique no botão "Deploy".
-![Fazendo o deploy do contrato 00-storage.sol](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/e3d4ykdtcl45cfczk6no.png)
+   ![Fazendo o deploy do contrato 00-storage.sol](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/e3d4ykdtcl45cfczk6no.png)
 
 5. Clique na seta para vermos as funções do nosso contrato.
-![Abrindo contrato que fizemos deploy](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/pfeu7oinfhpvhccd3a3d.png)
+   ![Abrindo contrato que fizemos deploy](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/pfeu7oinfhpvhccd3a3d.png)
 
 6. Clique em "get" para executar a função.
-![Utilizando a função get do contrato 00-storage.sol](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/f2ae889or1gz8g6kbw0u.png)
+   ![Utilizando a função get do contrato 00-storage.sol](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/f2ae889or1gz8g6kbw0u.png)
 
 7. Passe um número no input e clique em "store" para executar a função.
-![Utilizando a função store do contrato 00-storage.sol para salvar um novo número](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5lcib9tou0zxu78jgq4u.png)
+   ![Utilizando a função store do contrato 00-storage.sol para salvar um novo número](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5lcib9tou0zxu78jgq4u.png)
 
 8. Clique em "get" para executar a função para conferirmos se o valor que passamos foi somado com o valor inicial.
-![Utilizando a função get do contrato 00-storage.sol após salvarmos um novo número](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4zlmayo8y0842fwmmvto.png)
+   ![Utilizando a função get do contrato 00-storage.sol após salvarmos um novo número](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4zlmayo8y0842fwmmvto.png)
 
 ## Conclusão
+
 Esse foi o primeiro post da série de posts "Meu primeiro smart contract".
 Se você realizou todas as etapas acima, agora você tem um smart contract simples que é possível salvar um dado e consultar esse dado.
 
 ---
 
 ### Link do repositório
+
 https://github.com/viniblack/meu-primeiro-smart-contract
 
-
 ### Vamos trocar uma ideia ?
+
 Fique a vontade para me chamar para trocarmos uma ideia, aqui embaixo está meu contato.
 
 https://www.linkedin.com/in/viniblack/
