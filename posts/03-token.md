@@ -187,7 +187,7 @@ contract CryptoToken is IERC20 {
   //Properties
   string public constant name = "CryptoToken";
   string public constant symbol = "CRY";
-  uint8 public constant decimals = 7;  //Padrão do Ether é 18
+  uint8 public constant decimals = 18;  //Padrão do Ether é 18
   uint256 private totalsupply;
 
   mapping(address => uint256) private addressToBalance;
