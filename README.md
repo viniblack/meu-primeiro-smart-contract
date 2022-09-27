@@ -11,11 +11,11 @@ Ensinar qualquer pessoa que tenha zero conhecimento em solidity a criar seus pri
 - [x] [Criando o seu primeiro contrato inteligente;](https://www.web3dev.com.br/viniblack/meu-primeiro-smart-contract-criando-o-seu-primeiro-contrato-inteligente-31dl)
 - [x] [Aprendendo um pouco mais sobre smart contract;](https://www.web3dev.com.br/viniblack/meu-primeiro-smart-contract-aprendendo-um-pouco-mais-sobre-smart-contract-2hfe)
 - [x] [Criando um contrato de aposta;](https://www.web3dev.com.br/viniblack/meu-primeiro-smart-contract-criando-um-contrato-de-aposta-2349)
-- [x] [Criando um token ERC-20;](https://www.web3dev.com.br/viniblack/meu-primeiro-smart-contract-tokens-erc-20-57cf)
+- [x] [Criando um token ERC-20 pt.1;](https://www.web3dev.com.br/viniblack/meu-primeiro-smart-contract-tokens-erc-20-57cf)
 - [x] [Subindo meu primeiro smart contract para blockchain;](https://www.web3dev.com.br/viniblack/meu-primeiro-smart-contract-subindo-meu-primeiro-smart-contract-para-blockchain-11ij)
-- [x] [Criando um airdrop de tokens ERC-20](https://www.web3dev.com.br/viniblack/meu-primeiro-smart-contract-criando-airdrop-de-tokens-erc-20-37ee);
-- [ ] Desenvolvendo um smart contract com testes unitários;
-- [ ] Aprendendo um pouco mais sobre testes unitários;
+- [x] [Criando um airdrop de tokens ERC-20;](https://www.web3dev.com.br/viniblack/meu-primeiro-smart-contract-criando-airdrop-de-tokens-erc-20-37ee);
+- [x] [Criando um token ERC-20 pt.2;](https://www.web3dev.com.br/viniblack/meu-primeiro-smart-contract-criando-um-token-erc-20-pt2-4d2f)
+- [ ] Aprendendo sobre testes unitários em smart contracts;
 
 ## 🛠️ Tecnologias e Ferramentas
 
