@@ -1,4 +1,4 @@
-Esse é o sétimo post da série **Meu primeiro smart contract**, que tem a intenção de ensinar ao longo de sete semanas alguns conceitos do solidity até construirmos um token baseado no ERC-20 com alguns testes unitários.
+Esse é o sertimo post da série **Meu primeiro smart contract**, que tem a intenção de ensinar ao longo de sete semanas alguns conceitos do solidity até construirmos um token baseado no ERC-20 com alguns testes unitários.
 
 Nesse post vamos terminar de implementar as funções que faltou no [token ERC-20 que criamos](https://www.web3dev.com.br/viniblack/meu-primeiro-smart-contract-tokens-erc-20-57cf).
 
@@ -10,8 +10,8 @@ Vamos utilizar o mesmo projeto que criamos no post **Subindo meu primeiro smart 
 
 ## CryptoCoin
 
-Nesse post vamos implementar as funções e eventos que faltaram no token ERC-20 que criamos no post **Criando um token ERC-20**.
-Vamos começar adicionando mais alguns métodos na nossa interface, a nossa interface atualmente está assim:
+Nesse post vamos implemantar as funções e eventos que faltaram no token ERC-20 que criamos no post **Criando um token ERC-20**.
+Vamos começar adicionando mais alguns metodos na nossa interface, a nossa interface atualmente esta assim:
 
 ```solidity
 interface IERC20 {
@@ -25,11 +25,11 @@ interface IERC20 {
 
 Vamos adicionar as seguintes funções:
 
-- `allowance`: Retorna o número de tokens que alguém pode transferir em nome de outro endereço.
-- `approve`: Define uma quantidade de tokens que pode ser transferida em nome de outro endereço.
+- `allowance`: Retorna o número de tokens que alguem pode transferir em nome de outro endereço.
+- `approve`: Define uma quatidade de tokens que pode ser transferida em nome de outro endereço.
 - `transferFrom`: Transfere uma quantidade de tokens para outro endereço utilizando o mecanismo de permissão.
 - `increaseAllowance`: Aumenta a quantidade de tokens que pode ser transferida em nome de outro endereço.
-- `decreaseAllowance`: Diminui a quantidade de tokens que pode ser transferida em nome de outro endereço.
+- `decreaseAllowance`: Diminue a quantidade de tokens que pode ser transferida em nome de outro endereço.
 
 E vamos adicionar mais um evento:
 
@@ -59,12 +59,12 @@ enum Status { PAUSED, ACTIVE, CANCELLED }
 
 ## Variáveis
 
-Vamos criar mais algumas variáveis para armazenar o endereço do dono do contrato, o estado do contrato, o valor do token e vamos criar dois `mapping` para verificar o saldo de um endereço e um `mapping` que tem outro `mapping` guardamos que endereço tem permissão de transferir uma quantidade de tokens em nome de outro endereço.
+Vamos criar mais algumas variáveis para armarzenar o endereço do dono do contrato, o estado do contrato, o valor do token e vamos criar dois `mapping` para verificar o saldo de um endereço e um `mapping` que tem outro `mapping` guardamos que endereço tem permissão de transferir uma quantidade de tokens em nome de outro endereço.
 
 ```solidity
 // Properties
 string public constant name = "CryptoCoin";
-string public constant symbol = "CRC";
+string public constant symbol = "CRY";
 uint8 public constant decimals = 18;
 uint256 private totalsupply;
 
@@ -80,7 +80,7 @@ mapping(address => mapping (address => uint256)) allowed;
 
 ## Modificadores
 
-Vamos criar alguns modificadores para conseguirmos diferenciar nosso contrato.
+Vamos criar alguns modificadores para conseguirmos ferenciar nosso contrato.
 O primeiro modificador que iremos criar é o `isOwner`, que irá verificar se o endereço que está tentando acessar o contrato é o dono do contrato.
 
 ```solidity
@@ -109,7 +109,7 @@ Vamos criar um evento chamado `Mint` que vamos usar mais para frente para ser em
 event Mint(address owner, uint256 BalanceOwner, uint256 amount, uint256 supply);
 ```
 
-E vamos criar um evento chamado `Burn` que vamos usar mais para frente também para ser emitido quando 'queimamos' tokens, esse evento vai receber o endereço do dono do contrato, a quantidade de tokens que queremos queimar e total de tokens que já existem no contrato.
+E vamos criar um evento chamado `Burn` que vamos usar mais para frente também para ser emitido quando 'queimamos' tokens, esse evento vai receber o endereço do dono do contrato, a quandidade de tokens que queremos queimar e total de tokens que já existem no contrato.
 
 ```solidity
 event Burn(address owner, uint256 value, uint256 supply);
@@ -117,7 +117,7 @@ event Burn(address owner, uint256 value, uint256 supply);
 
 ## Construtor
 
-No construtor vamos passar o total de tokens como parâmetro, definir o dono do contrato como quem realiza o deploy, o `totalsupply` recebendo o total e atribuir todos os tokens inicialmente para carteira do dono do contrato e o status inicial do contrato como ativo.
+No construtor vamos passar o total de tokens como parametro, definir o dono do contrato como quem realizar o deploy, o `totalsupply` recebendo o total e atribuir todos os tokens inicialmente para carteira do dono do contrato e o status inicial do contrato como ativo.
 
 ```solidity
 // Constructor
@@ -130,7 +130,7 @@ constructor(uint256 total) {
 }
 ```
 
-Agora vamos adicionar mais algumas funções para conseguirmos gerenciar o status do nosso contrato, criar ou queimar tokens, realizar transferência em nome de um terceiro e matar nosso contrato, os funções do nosso contrato atualmente são essas:
+Agora vamos adicionar mais algumas funções para conseguirmos gerenciar o status do nosso contrato, criar ou queimar tokens, realizar trânsferencia em nome de um terceiro e matar nosso contrato, os funções do nosso contrato atualmente são essas:
 
 ```solidity
 //Public Functions
@@ -157,7 +157,7 @@ Vamos implementar as funções que criamos na nossa interface.
 
 ## Quantidade restante de tokens
 
-Vamos criar uma função pública chamada `allowance` que retorna o número restante de tokens que um terceiro pode transferir em nome de outro endereço. Ela espera dois parâmetros `from` endereço da carteira que tem permissão de realizar transferência em nome do `spender`.
+Vamos criar uma função publica chamada `allowance` que retorna o número restante de tokens que um terceiro pode transferir em nome de outro endereço. Ela espera dois parâmetros `from` endereço da carteira que tem permissão de realizar transferência em nome do `spender`.
 
 ```solidity
 function allowance(address from, address spender) public override view returns (uint) {
@@ -167,8 +167,8 @@ function allowance(address from, address spender) public override view returns (
 
 ## Permissão de transferência em nome de terceiro
 
-Vamos criar uma função pública chamada `approve` que permite que um terceiro transfira tokens em nome de outro endereço. Ela espera dois parâmetros: 'spender' endereço de quem eu quero dar permissão de realizar a transferência e `amount` quantidade de tokens que eu quero dar permissão. Dentro desta função vamos chamar o evento `allowed` passando a carteira de quem está dando permissão, a carteira de quem está recebendo a permissão e a quantidade de tokens que está sendo permitida.
-Após isso, vamos emitir o evento `Approval` passando a carteira de quem está dando permissão, a carteira de quem está recebendo a permissão e a quantidade de tokens que está sendo permitida.
+Vamos criar uma função publica chamada `approve` que permite que um terceiro transfera tokens em nome de outro endereço. Ela espera dois parâmetros `spender` endereço de quem eu quero dar permissão de realizar a transferencia e `amount` quantidade de tokens que eu quero dar permissão. Dentro dessa função vamos chamar o evento `allowed` passando a carteira de quem está dando permissão, a carteira de quem está recebendo a permissão e a quantidade de tokens que está sendo permitida.
+Após isso vamos emitir o evento `Approval` passando a carteira de quem está dando permissão, a carteira de quem está recebendo a permissão e a quantidade de tokens que está sendo permitida.
 
 ```solidity
 function approve(address spender, uint256 amount) public override returns (bool) {
@@ -181,8 +181,8 @@ function approve(address spender, uint256 amount) public override returns (bool)
 
 ## Transferência em nome de terceiro
 
-Vamos criar uma função pública chamada `transferFrom` que irá movimentar tokens de uma carteira para outra. Ela espera três parâmetros `sender` endereço da carteira que tem permissão de realizar transferência em nome do `recipient`, `recipient` endereço da carteira que vai receber os tokens e `amount` quantidade de tokens que vai ser transferida.
-Dentro desta função vamos verificar se o endereço que está tentando realizar a transferência tem permissão para realizar a transferência, se o valor que está sendo transferido é maior que zero e se o endereço que está transferindo tem saldo suficiente para realizar a transferência. Após isso, vamos emitir o evento `Transfer` passando a carteira de quem está realizando a transferência, a carteira de quem está recebendo a transferência e a quantidade de tokens que está sendo transferida.
+Vamos criar uma função publica chamada `transferFrom` que irá movimentar tokens de uma carteira para outra. Ela espera três parâmetros `sender` endereço da carteira que tem permissão de realizar transferência em nome do `recipient`, `recipient` endereço da carteira que vai receber os tokens e `amount` quantidade de tokens que vai ser transferida.
+Dentro dessa função vamos verificar se o endereço que está tentando realizar a transferência tem permissão para realizar a transferência, se o valor que está sendo transferido é maior que zero e se o endereço que está transferindo tem saldo suficiente para realizar a transferência. Após isso vamos emitir o evento `Transfer` passando a carteira de quem está realizando a transferência, a carteira de quem está recebendo a transferência e a quantidade de tokens que está sendo transferida.
 
 ```solidity
 function transferFrom(address sender, address recipient, uint256 amount)public isActive override returns(bool) {
@@ -201,8 +201,8 @@ function transferFrom(address sender, address recipient, uint256 amount)public i
 
 ## Aumentar permissão de transferência em nome de terceiro
 
-Vamos criar uma função pública chamada `increaseAllowance` que irá aumentar a permissão de transferência em nome de terceiro. Ela espera dois parâmetros: 'spender' endereço da carteira que vai receber a permissão e `addedValue` quantidade de tokens que vai ser adicionada à permissão.
-Dentro desta função vamos verificar se o endereço que está tentando receber a permissão é um endereço válido. Após isso, vamos aumentar a permissão de transferência e emitir o evento `Approval` passando a carteira de quem está chamando a função, a carteira de quem está recebendo a permissão e a quantidade de tokens que foram aprovados.
+Vamos criar uma função publica chamada `increaseAllowance` que irá aumentar a permissão de transferência em nome de terceiro. Ela espera dois parâmetros `spender` endereço da carteira que vai receber a permissão e `addedValue` quantidade de tokens que vai ser adicionada a permissão.
+Dentro dessa função vamos verificar se o endereço que está tentando receber a permissão é um endereço valido. Após isso vamos aumentar a permissão de transferência e emitir o evento `Approval` passando a carteira de quem está chamando a função, a carteira de quem está recebendo a permissão e a quantidade de tokens que aprovadas.
 
 ```solidity
 function increaseAllowance(address spender, uint256 addedValue) public override returns (bool){
@@ -217,8 +217,8 @@ function increaseAllowance(address spender, uint256 addedValue) public override 
 
 ## Diminuir permissão de transferência em nome de terceiro
 
-Vamos criar uma função pública chamada `decreaseAllowance` que irá diminuir a permissão de transferência em nome de terceiro. Ela espera dois parâmetros: 'spender' endereço da carteira que vai receber a permissão e `subtractedValue` quantidade de tokens que vai ser removida da permissão.
-Dentro desta função vamos verificar se o endereço que está tentando receber a permissão é um endereço válido. Após isso, vamos diminuir a permissão de transferência e emitir o evento `Approval` passando a carteira de quem está chamando a função, a carteira de quem está recebendo a permissão e a quantidade de tokens que foram aprovados.
+Vamos criar uma função publica chamada `decreaseAllowance` que irá diminuir a permissão de transferência em nome de terceiro. Ela espera dois parâmetros `spender` endereço da carteira que vai receber a permissão e `subtractedValue` quantidade de tokens que vai ser removida da permissão.
+Dentro dessa função vamos verificar se o endereço que está tentando receber a permissão é um endereço valido. Após isso vamos diminuir a permissão de transferência e emitir o evento `Approval` passando a carteira de quem está chamando a função, a carteira de quem está recebendo a permissão e a quantidade de tokens que aprovadas.
 
 ```solidity
 function decreaseAllowance(address spender, uint256 subtractedValue) public override returns (bool) {
@@ -233,7 +233,7 @@ function decreaseAllowance(address spender, uint256 subtractedValue) public over
 
 ## Estado do contrato
 
-Vamos criar uma função pública chamada `state` que irá retornar o estado do contrato. Ela não espera nenhum parâmetro e retorna o valor de `contractState`.
+Vamos criar uma função publica chamada `state` que irá retornar o estado do contrato. Ela não espera nehum parâmetro e retorna o valor de `contractState`.
 
 ```solidity
 function state() public view returns(Status) {
@@ -243,8 +243,8 @@ function state() public view returns(Status) {
 
 ## Mudar o estado do contrato
 
-Vamos criar uma função chamada `setState` que irá mudar o estado do contrato. Ela espera um parâmetro `status` que é o novo estado do contrato, como `contractState` é um enum então devemos passar um numérico de 0 a 2. Essa função só pode ser chamada pelo dono do contrato, por isso vamos passar o nosso modificado `ìsOwner` que verifica se o endereço que está chamando a função é o dono do contrato.
-Dentro desta função vamos verificar se o novo estado do contrato é diferente do estado atual do contrato, se o novo estado do contrato é um estado válido. Após isso vamos definir o valor de `contractState` para o estado passado como parâmetro.
+Vamos cria uma função chamada `setState` que irá mudar o estado do contrato. Ela espera um parâmetro `status` que é o novo estado do contrato, como `contractState` é um enum então devemos passar um númerico de 0 a 2. Essa função só pode ser chamada pelo dono do contrato, por isso vamos passar o nosso modificado `ìsOwner` que verifica se o endereço que está chamando a função é o dono do contrato.
+Dentro dessa função vamos verificar se o novo estado do contrato é diferente do estado atual do contrato, se o novo estado do contrato é um estado válido. Após isso vamos redefinir o valor de `contractState` para o estado passado como parâmetro.
 
 ```solidity
 function setState(uint8 status) public isOwner {
@@ -262,8 +262,8 @@ function setState(uint8 status) public isOwner {
 
 ## Cunhando mais tokens
 
-Vamos criar uma função pública chamada `mint` que irá cunhar mais tokens. Ela espera um parâmetro `amount` que é a quantidade de tokens que vai ser cunhada. Essa função só pode ser chamada pelo dono do contrato, por isso vamos passar o nosso modificado `ìsOwner` que verifica se o endereço que está chamando a função é o dono do contrato.
-Dentro desta função vamos verificar se a quantidade de tokens que vai ser cunhada é maior que zero, se for maior que zero vamos aumentar o total de tokens em circulação e aumentar a quantidade de tokens do dono do contrato. Após isso, vamos emitir o evento `Mint` passando o endereço do dono do contrato, o saldo da carteira do dono do contrato e a quantidade de tokens existentes.
+Vamos criar uma função publica chamada `mint` que irá cunhar mais tokens. Ela espera um parâmetro `amount` que é a quantidade de tokens que vai ser cunhada. Essa função só pode ser chamada pelo dono do contrato, por isso vamos passar o nosso modificado `ìsOwner` que verifica se o endereço que está chamando a função é o dono do contrato.
+Dentro dessa função vamos verificar se a quantidade de tokens que vai ser cunhada é maior que zero, se for maior que zero vamos aumentar o total de tokens em circulação e aumentar a quantidade de tokens do dono do contrato. Após isso vamos emitir o evento `Mint` passando o endereço do dono do contrato, o salto da carteira do dono do contrato e a quantidade de tokens existentes.
 
 ```solidity
 function mint(uint256 amount) public isActive isOwner {
@@ -278,8 +278,8 @@ function mint(uint256 amount) public isActive isOwner {
 
 ## Queimando tokens
 
-Vamos criar uma função pública chamada `burn` que irá queimar tokens. Ela espera um parâmetro `amount` que é a quantidade de tokens que vai ser queimada. Essa função só pode ser chamada pelo dono do contrato, por isso vamos passar o nosso modificado `ìsOwner` que verifica se o endereço que está chamando a função é o dono do contrato.
-Dentro desta função vamos verificar se a quantidade de tokens que vai ser queimada é maior que zero, se for maior que zero vamos verificar se a quantidade de tokens que vai ser queimada é menor ou igual a quantidade de tokens em circulação, se for menor ou igual vamos verificar se a quantidade de tokens que vai ser queimada é menor ou igual a quantidade de tokens do dono do contrato. Após isso, vamos diminuir o total de tokens em circulação e diminuir a quantidade de tokens do dono do contrato. Após isso vamos emitir o evento `Burn` passando o endereço do dono do contrato, a quantidade de tokens queimados e a quantidade de tokens existentes.
+Vamos criar uma função publica chamada `burn` que irá queimar tokens. Ela espera um parâmetro `amount` que é a quantidade de tokens que vai ser queimada. Essa função só pode ser chamada pelo dono do contrato, por isso vamos passar o nosso modificado `ìsOwner` que verifica se o endereço que está chamando a função é o dono do contrato.
+Dentro dessa função vamos verificar se a quantidade de tokens que vai ser queimada é maior que zero, se for maior que zero vamos verificar se a quantidade de tokens que vai ser queimada é menor ou igual a quantidade de tokens em circulação, se for menor ou igual vamos verificar se a quantidade de tokens que vai ser queimada é menor ou igual a quantidade de tokens do dono do contrato. Após isso vamos diminuir o total de tokens em circulação e diminuir a quantidade de tokens do dono do contrato. Após isso vamos emitir o evento `Burn` passando o endereço do dono do contrato, a quantidade de tokens queimados e a quantidade de tokens existentes.
 
 ```solidity
 function burn(uint256 amount) public isActive isOwner {
@@ -296,8 +296,8 @@ function burn(uint256 amount) public isActive isOwner {
 
 ## Matando o contrato
 
-Vamos criar uma função pública chamada `kill` que irá matar o contrato. Essa função só pode ser chamada pelo dono do contrato, por isso vamos passar o nosso modificado `ìsOwner` que verifica se o endereço que está chamando a função é o dono do contrato.
-Dentro desta função vamos mudar o estado do contrato para `CANCELLED` e vamos destruir o contrato e enviar todos os Ether do contrato para o dono do contrato.
+Vamos criar uma função publica chamada `kill` que irá matar o contrato. Essa função só pode ser chamada pelo dono do contrato, por isso vamos passar o nosso modificado `ìsOwner` que verifica se o endereço que está chamando a função é o dono do contrato.
+Dentro dessa função vamos mudar o estado do contrato para `CANCELLED` e vamos destruir o contrato e enviar todos os Ether do contrato para o dono do contrato.
 
 ```solidity
 function kill() public isOwner {
@@ -336,7 +336,7 @@ contract CryptoCoin is IERC20 {
   //Properties
   address private owner;
   string public constant name = "CryptoCoin";
-  string public constant symbol = "CRC";
+  string public constant symbol = "CRY";
   uint8 public constant decimals = 18;
   uint256 private totalsupply;
   Status contractState;
@@ -517,8 +517,6 @@ Como configuramos o hardhat no post anterior, no terminal vamos executar o segui
 npx hardhat run scripts/deploy-cryptoCoin.js --network goerli
 ```
 
-![Endereço dos nossos contratos](https://web3dev-forem-production.s3.amazonaws.com/uploads/articles/lnvm7tlt81tjfpwxu3qd.png)
-
 Se tudo estiver certo esse irá retornar o endereço do nosso contrato.
 
 Copiando os endereços e entrando no [Goerli Etherscan](https://goerli.etherscan.io/) podemos ver nossos contratos na blockchain da Goerli.
@@ -528,10 +526,8 @@ Esses são os contratos que subimos nesse post.
 
 ## Conclusão
 
-Esse foi o sétimo post da série "Meu primeiro smart contract".
-Se tudo deu certo, agora você tem um smart contract que é capaz criar e queimar tokens, além de ter um sistema de pausa e cancelamento do contrato.
+Esse foi o setimo post da série "Meu primeiro smart contract".
 
-Se você gostou do conteúdo e te ajudou de alguma forma, deixe um like para ajudar o conteúdo a chegar para mais pessoas.
 ![deixa um like](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/7quw5wii7e1aihephclv.gif)
 
 ---
